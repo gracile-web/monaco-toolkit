@@ -1,0 +1,21 @@
+{
+  "// plugins": ["prettier-plugin-embed"],
+
+  "singleQuote": true,
+  "useTabs": true,
+  "proseWrap": "always",
+
+  "embeddedHtmlTags": ["html"],
+  "embeddedCssTags": ["css"],
+
+  "// htmlWhitespaceSensitivity": "ignore",
+
+  "overrides": [
+    {
+      "files": ["*.md", "*.yaml", "*.json", ".*rc*"],
+      "options": {
+        "useTabs": false
+      }
+    }
+  ]
+}
