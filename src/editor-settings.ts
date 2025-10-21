@@ -1,8 +1,8 @@
-import * as monaco from 'monaco-editor';
+import { Monaco } from './monaco.js';
 import { DEFAULT_PRINT_WIDTH } from './formatting.js';
 import { toFileUrl } from './paths.js';
 
-export const commonEditorSettings: monaco.editor.IStandaloneEditorConstructionOptions =
+export const commonEditorSettings: Monaco.editor.IStandaloneEditorConstructionOptions =
 	{
 		theme: 'custom-theme',
 		// theme: 'vs-dark',
@@ -20,6 +20,7 @@ export const commonEditorSettings: monaco.editor.IStandaloneEditorConstructionOp
 		renderFinalNewline: 'on',
 		renderControlCharacters: true,
 		rulers: [DEFAULT_PRINT_WIDTH],
+		linkedEditing: true,
 
 		hover: { delay: 250, above: true },
 
@@ -31,7 +32,10 @@ export const commonEditorSettings: monaco.editor.IStandaloneEditorConstructionOp
 		inlayHints: { enabled: 'on' /* padding: true */ },
 	};
 
-export function addExtraLibs(extraLibs: Record<string, string>) {
+export function addExtraLibs(
+	monaco: typeof Monaco,
+	extraLibs: Record<string, string>,
+) {
 	Object.entries(extraLibs).forEach(([fileName, content]) => {
 		const filePath = toFileUrl(fileName);
 

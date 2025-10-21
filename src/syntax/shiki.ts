@@ -1,11 +1,15 @@
-import {
-	bundledLanguages,
-	createOnigurumaEngine,
-	loadWasm,
-	type ThemeInput,
-} from 'shiki';
+import { createOnigurumaEngine, loadWasm, type ThemeInput } from 'shiki';
+import langMarkdown from 'shiki/langs/markdown.mjs';
+import langJsx from 'shiki/langs/jsx.mjs';
+import langTsx from 'shiki/langs/tsx.mjs';
+import langTypescript from 'shiki/langs/typescript.mjs';
+import langJavascript from 'shiki/langs/javascript.mjs';
+import langHtml from 'shiki/langs/html.mjs';
+import langCss from 'shiki/langs/css.mjs';
+import langJson from 'shiki/langs/json.mjs';
 
-import { bundledThemes } from 'shiki';
+import themeGithubDark from 'shiki/themes/github-dark.mjs';
+import themeGithubLight from 'shiki/themes/github-light.mjs';
 
 import { createdBundledHighlighter } from 'shiki';
 import { litShikiLanguages } from './literals-grammars.js';
@@ -15,12 +19,22 @@ export async function setupShikiMonaco(options: { lit: boolean }) {
 	await loadWasm(import('shiki/wasm'));
 
 	const getHighlighter = createdBundledHighlighter({
-		themes: bundledThemes,
+		themes: {
+			'github-dark': themeGithubDark,
+			'github-light': themeGithubLight,
+		},
 
 		langs: {
-			...(bundledLanguages as any),
+			markdown: langMarkdown,
+			jsx: langJsx,
+			tsx: langTsx,
+			typescript: langTypescript,
+			javascript: langJavascript,
+			html: langHtml,
+			css: langCss,
+			json: langJson,
 
-			...(options.lit ? litShikiLanguages : []),
+			...((options.lit ? litShikiLanguages : []) as any),
 		},
 		engine: () => createOnigurumaEngine(),
 	});
@@ -40,7 +54,7 @@ export async function setupShikiMonaco(options: { lit: boolean }) {
 			settings: { foreground: '#f97583' },
 		},
 	];
-	const ghDark = (await bundledThemes['github-dark']()).default;
+	const ghDark = themeGithubDark;
 
 	const commentMarkers: IRawThemeSetting[] = [
 		// {

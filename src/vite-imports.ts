@@ -54,13 +54,6 @@ export const tsNodeModules: Record<string, () => Promise<string>> =
 			'/node_modules/typescript/lib/lib.decorators.d.ts',
 			'/node_modules/typescript/lib/lib.decorators.legacy.d.ts',
 
-			// '/node_modules/web-elements-analyzer/package.json',
-			//
-
-			// '/node_modules/web-elements-analyzer/package.json',
-			// '/node_modules/web-elements-analyzer/dist/adapters/react.d.ts',
-			// '/node_modules/web-elements-analyzer/dist/adapters/type-utilities.d.ts',
-
 			// '/node_modules/lit/package.json',
 			// '/node_modules/lit/index.d.ts',
 			// '/node_modules/lit/decorators.d.ts',

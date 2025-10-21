@@ -2,33 +2,23 @@ import { setupCompilerOptions } from './compiler.js';
 import { addExtraLibs } from './editor-settings.js';
 import { setupFormatting } from './formatting.js';
 import { setupEmmet, setupKeybindings } from './keybindings.js';
-import { setupWorkers } from './setup-workers.js';
+import type { Monaco } from './monaco.js';
 
 import { setupTheming } from './theming.js';
 export { commonEditorSettings } from './editor-settings.js';
 
-/**
- * - `monaco-editor/esm/vs/language/typescript/ts.worker.js`
- * - `monaco-editor/esm/vs/language/json/json.worker.js`
- * - `monaco-editor/esm/vs/editor/editor.worker.js`
- */
 export async function setupMonacoEnvironment(
+	monaco: typeof Monaco,
 	extraLibs: Record<string, string>,
 	options: {
-		tsWorkerUrl: URL;
-		defaultWorkerUrl: URL;
-		jsonWorkerUrl: URL;
-		prettierWorkerUrl: URL;
 		lit: boolean;
 	},
 ) {
 	setupEmmet();
-	setupKeybindings();
-	setupFormatting();
-	setupCompilerOptions();
-	addExtraLibs(extraLibs);
+	setupKeybindings(monaco);
+	setupFormatting(monaco);
+	setupCompilerOptions(monaco);
+	addExtraLibs(monaco, extraLibs);
 
-	await setupTheming(options);
-
-	return setupWorkers(options);
+	await setupTheming(monaco, options);
 }

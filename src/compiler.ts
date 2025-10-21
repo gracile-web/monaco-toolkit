@@ -1,6 +1,6 @@
-import * as monaco from 'monaco-editor';
+import type { Monaco } from './monaco.js';
 
-export function setupCompilerOptions() {
+export function setupCompilerOptions(monaco: typeof Monaco) {
 	monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
 		noEmit: true,
 		strict: true,

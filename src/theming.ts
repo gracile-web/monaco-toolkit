@@ -1,9 +1,12 @@
 import { shikiToMonaco } from '@shikijs/monaco';
 
-import * as monaco from 'monaco-editor';
 import { setupShikiMonaco } from './syntax/shiki.js';
+import type { Monaco } from './monaco.js';
 
-export async function setupTheming(options: { lit: boolean }): Promise<string> {
+export async function setupTheming(
+	monaco: typeof Monaco,
+	options: { lit: boolean },
+): Promise<string> {
 	const { lit = true } = options;
 	const { customTheme, getHighlighter } = await setupShikiMonaco({ lit });
 	const langs = [

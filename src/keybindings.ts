@@ -1,6 +1,6 @@
-import * as monaco from 'monaco-editor';
+import type { Monaco } from './monaco.js';
 
-export function setupKeybindings() {
+export function setupKeybindings(monaco: typeof Monaco) {
 	monaco.editor.addCommand({
 		id: 'toggle-comment',
 		run: () => {

@@ -1,10 +1,9 @@
 import { configureMonacoPrettier } from 'monaco-prettier';
-
-import * as monaco from 'monaco-editor';
+import type { Monaco } from './monaco.js';
 
 export const DEFAULT_PRINT_WIDTH = 80;
 
-export function setupFormatting(printWidth?: number) {
+export function setupFormatting(monaco: typeof Monaco, printWidth?: number) {
 	// Disable the builtin formatting providers.
 
 	monaco.languages.css.cssDefaults.setModeConfiguration({

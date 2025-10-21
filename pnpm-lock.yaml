@@ -50,9 +50,6 @@ importers:
       typescript:
         specifier: 5.8.3
         version: 5.8.3
-      web-elements-analyzer:
-        specifier: link:..
-        version: link:..
     devDependencies:
       prettier:
         specifier: ^3.6.2
